@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# --------------------------------
+# fzf the prosses and kill it
+# --------------------------------
+pid=$(ps -ef | sed 1d | fzf --multi | awk '{print $2}')
+
+if [ "x$pid" != "x" ]; then
+    echo $pid | xargs kill -${1:-9}
+fi

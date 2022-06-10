@@ -1,0 +1,20 @@
+#!/bin/sh
+
+# ----------------------------
+# fzf the file and cat
+# ----------------------------
+if [ $# = 0 ];then
+    selected=$(fd --type file -I -H | fzf --select-1 --preview "bat --color=always --style=header,grid --line-range :100 {}")
+else
+    if [ -f $1 ]; then
+        selected=$1
+    else
+        selected=$(fd --type file -I -H | fzf --select-1 --query "$1" --preview "bat --color=always --style=header,grid --line-range :100 {}")
+    fi
+fi
+
+if [ -n "$selected" ];then
+    bat $selected
+else
+    echo "No file is selected"
+fi

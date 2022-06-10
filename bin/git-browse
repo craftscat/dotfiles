@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# -----------------------
+# git commit browser
+# -----------------------
+git log --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr% C(auto)%an" "$@" |
+    fzf --no-sort --reverse --tiebreak=index --select-1 \
+        --ansi --preview="$_viewGitLogLine" \
+            --header "enter to view, alt-y to copy hash" \
+            --bind "enter:execute:echo {} | grep -o '[a-f0-9]\{7\}' | head -1 | less -R" \
+            --bind "alt-y:execute:echo {} | grep -o '[a-f0-9]\{7\}' | head -1 | xargs -I % sh -c 'git show --color=always % | diff-so-fancy' | xclip"

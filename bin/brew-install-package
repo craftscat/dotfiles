@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# ----------------------------------------------------
+## Install (one or multiple) selected application(s)
+# ----------------------------------------------------
+packages=$(brew search "$@" | fzf --multi --preview="")
+
+if [[ $packages ]]; then
+    for pkg in $(echo $packages)
+    do
+        brew install $pkg
+    done
+fi

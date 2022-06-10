@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# ----------------------------
+# Full-text search
+# ----------------------------
+grep_cmd="grep --recursive --line-number --invert-match --regexp '^\s*$' * 2>/dev/null"
+
+if [[ $(command -v rg) ]]; then
+    grep_cmd="rg --hidden --no-ignore --line-number --no-heading --invert-match '^\s*$' 2>/dev/null"
+fi
+
+fzf_cmd="fzf --select-1 --exit-0 --preview=''"
+read -r file line <<<"$(eval $grep_cmd | eval $fzf_cmd | awk -F: '{print $1, $2}')"
+( [[ -z "$file" ]] || [[ -z "$line" ]] ) && exit
+
+$EDITOR $file +$line

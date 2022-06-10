@@ -1,0 +1,14 @@
+#!/bin/sh
+
+# ----------------------------------------------------
+# Delete (one or multiple) selected application(s)
+# ----------------------------------------------------
+
+packages=$(brew leaves | fzf --multi --preview="")
+
+if [[ $packages ]]; then
+    for pkg in $(echo $packages)
+    do
+        brew uninstall $pkg
+    done
+fi
