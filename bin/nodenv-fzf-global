@@ -1,0 +1,5 @@
+#!/bin/sh
+
+version=$(nodenv versions | fzf --select-1 --preview="" | tr -d ' *')
+
+nodenv global $version
