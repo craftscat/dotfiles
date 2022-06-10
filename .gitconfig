@@ -4,15 +4,17 @@
 
 [alias]
     # add
-    a = add
-    ad = !git ls-files --multi -o --exclude-standard | fzf --multi --preview 'git diff --color=always {}' | xargs git add && git s
+    a  = add
+    ad = !git-fzf-add
     # diff
     d = diff
     # commit
     co = commit
+    cm = commit -m
     cv = commit -v
+    ca = commit --ammend -m
     # switch
-    sw = switch
+    sw  = switch
     new = switch -c
     cd = !git-cd # ~/bin/git-cd
     # status
@@ -33,17 +35,20 @@
     ub = pull --rebase origin master # update branch
     # stash
     save = stash save
-    load = !git stash list | fzf --select-1 --preview='' | awk -F ':' '{print $1}' | xargs git stash appl
+    load = !git stash list | fzf --select-1 --preview='' | awk -F ':' '{print $1}' | xargs git stash apply
+    drop = !git stash list | fzf --select-1 --preview='' | awk -F ':' '{print $1}' | xargs git stash drop
     # reset
     rs = reset
+    go = !git-fzf-reset
+    undo   = reset --soft HEAD^
+    cancel = reset --hard HEAD^
     # restore
-    rst = !git status -s | fzf | awk '{print $2}' | xargs git restore
-    rsts = !git status -s | fzf | awk '{print $2}' | xargs git restore --staged
+    rstr = !git status -s | fzf --preview='' | awk '{print $2}' | xargs git restore
     # log
-    df = !git hist | fzf --select-1 --preview=""| awk '{print $2}' | xargs -I {} git diff {}^ {}
-    lg = log --graph --name-status --pretty=format:\"%C(red)%h %C(reset)(%cd) %C(green)%an %Creset%s %C(yellow)%d%Creset\" --date=relative
-    hist = log --pretty=format:\"%Cgreen%h %Creset%cd %Cblue[%cn] %Creset%s%C(yellow)%d%C(reset)\" --graph --date=relative --decorate --all
-    browse = !git-browse # ~/bin/git-browse
+    df     = !git hist | fzf --select-1 --preview='' | awk '{print $2}' | xargs -I {} git diff {}^ {}
+    lg     = log --graph --name-status --pretty=format:\"%C(red)%h %C(reset)(%cd) %C(green)%an %Creset%s %C(yellow)%d%Creset\" --date=relative
+    hist   = log --pretty=format:\"%Cgreen%h %Creset%cd %Cblue[%cn] %Creset%s%C(yellow)%d%C(reset)\" --graph --date=relative --decorate --all
+    browse = !git-browse # ~/bin/git-browse    
     # github
     pr = !gh pr view --web
 
