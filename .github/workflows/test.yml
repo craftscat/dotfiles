@@ -1,0 +1,25 @@
+name: test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    strategy:
+      os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Install dotfiles
+        run: make install
+
+      - name: Load .zshrc
+        run: |
+          zsh ~/.zshrc 2> error.log; cat error.log
+          if [ -s error.log ]; then false; fi
