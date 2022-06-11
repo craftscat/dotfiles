@@ -12,7 +12,7 @@
     co = commit
     cm = commit -m
     cv = commit -v
-    ca = commit --ammend -m
+    ca = commit --amend -m
     # switch
     sw  = switch
     new = switch -c
