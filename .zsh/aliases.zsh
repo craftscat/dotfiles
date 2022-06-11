@@ -52,7 +52,7 @@ alias c="code ."
 alias bip="brew-install-package"
 alias bup="brew-uninstall-package"
 # ghq
-alias gu="ghq-update"
+alias gcd="ghq-cd"
 alias vs="ghq-vscode"
 # others
 alias fcat="fzf-cat"
