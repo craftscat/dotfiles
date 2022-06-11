@@ -10,7 +10,7 @@ echo "==> Set zsh as the default shell"
 
 echo "==> Start to install Homebrew."
 xcode-select --install > /dev/null
-if !(type "brew" > /dev/null 2>&1); then
+if ! (type "brew" > /dev/null 2>&1); then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" > /dev/null
 fi
 echo "==> Homebrew is installed."
@@ -122,7 +122,7 @@ defaults write com.apple.terminal StringEncodings -array 4
 for app in "Finder" \
     "Dock" \
 	"SystemUIServer"; do
-	killall "${app}" &> /dev/null
+	killall "${app}" > /dev/null
 done
 
 echo "==> Done."

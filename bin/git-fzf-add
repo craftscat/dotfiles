@@ -3,10 +3,12 @@
 # --------------------------------
 # git status & fzf diff & add
 # --------------------------------
-selected=$(unbuffer git status -s |
+chenges=$(unbuffer git status -s |
     fzf -m --ansi --preview="echo {} | awk '{print \$2}' | xargs git diff --color" |
     awk '{print $2}')
-if [[ -n "$selected" ]]; then
-    selected=$(tr '\n' ' ' <<< "$selected")
-    git add $selected
+if [ -n "$chenges" ]; then
+    selected=$(echo "$chenges" | tr '\n' ' ')
+    echo "$selected" | xargs git add
 fi
+
+git status -s

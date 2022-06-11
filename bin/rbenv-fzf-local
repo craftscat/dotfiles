@@ -2,4 +2,6 @@
 
 version=$(rbenv versions | fzf --select-1 --preview="")
 
-rbenv local $version
+if [ -n "$version" ]; then
+    rbenv local "$version"
+fi

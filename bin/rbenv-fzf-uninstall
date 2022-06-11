@@ -2,10 +2,11 @@
 
 versions=$(rbenv versions | fzf --multi --preview="")
 
-if [[ $versions ]]; then
-    for ver in $(echo $versions)
+if [ -n "$versions" ]; then
+    echo "==> Start to uninstall ruby version: $versions"
+    for ver in $versions
     do
-        rbenv uninstall $ver
+        rbenv uninstall "$ver"
     done
 fi
 

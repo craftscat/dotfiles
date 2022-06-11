@@ -1,7 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 
 # ---------------------------------------
 # fzf the file and edit it with vim
 # ---------------------------------------
-IFS=$'\n' files=($(fd --type file -I -H -E '.git/'| fzf-tmux --query="$1" --multi --select-1 --exit-0))
-[[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
+IFS=" " read -r -a files <<< "$(fd --type file -I -H -E '.git/'| fzf-tmux --query="$1" --multi --select-1 --exit-0)"
+echo "${files[0]}"
+[ -n "${files[0]}" ] && ${EDITOR:-vim} "${files[@]}"

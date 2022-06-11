@@ -5,9 +5,9 @@
 # ----------------------------------------------------
 packages=$(brew search "$@" | fzf --multi --preview="")
 
-if [[ $packages ]]; then
-    for pkg in $(echo $packages)
+if [ -n "$packages" ]; then
+    for pkg in $packages
     do
-        brew install $pkg
+        brew install "$pkg"
     done
 fi

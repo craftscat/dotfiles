@@ -2,4 +2,6 @@
 
 version=$(rbenv versions | fzf --select-1 --preview="" | tr -d ' *')
 
-rbenv global $version
+if [ -n "$version" ]; then
+    rbenv global "$version"
+fi

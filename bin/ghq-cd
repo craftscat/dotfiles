@@ -5,7 +5,7 @@
 # -------------------------------
 repo=$(ghq list | fzf --select-1 --preview "exa -T -L 1 {}")
 if [ -n "$repo" ]; then    
-    repo_path=$(ghq list --full-path --exact $repo)
-    cd ${repo_path}
+    repo_path=$(ghq list --full-path --exact "$repo")
+    cd "$repo_path" || return
     exec $SHELL
 fi

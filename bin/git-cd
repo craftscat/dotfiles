@@ -11,5 +11,5 @@ branch=$(
 )
 
 if [ -n "$branch" ]; then
-  git switch $branch
+  git switch "$branch"
 fi

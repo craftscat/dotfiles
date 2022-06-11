@@ -4,5 +4,5 @@
 # Google search
 # -----------------
 # If there is no first argument, the contents of pbpaste are used as the search word
-[ -z "$1" ] && searchWord=`pbpaste` || searchWord=$1
-open https://www.google.co.jp/search\?q\=$searchWord
+[ -z "$1" ] && searchWord=$(pbpaste) || searchWord=$1
+open "https://www.google.co.jp/search?q=$searchWord"

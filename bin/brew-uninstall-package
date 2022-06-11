@@ -6,9 +6,9 @@
 
 packages=$(brew leaves | fzf --multi --preview="")
 
-if [[ $packages ]]; then
-    for pkg in $(echo $packages)
+if [ "$packages" ]; then
+    for pkg in $packages
     do
-        brew uninstall $pkg
+        brew uninstall "$pkg"
     done
 fi

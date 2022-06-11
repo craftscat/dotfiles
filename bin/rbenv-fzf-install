@@ -2,10 +2,11 @@
 
 versions=$(rbenv install --list-all | fzf --multi --preview="")
 
-if [[ $versions ]]; then
-    for ver in $(echo $versions)
+if [ -n "$versions" ]; then
+    echo "==> Start to install ruby version: $versions"
+    for ver in $versions
     do
-        rbenv install $ver
+        rbenv install "$ver"
     done
 fi
 

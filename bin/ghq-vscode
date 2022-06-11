@@ -5,5 +5,5 @@
 # -------------------------------------------------
 repo=$(ghq list --full-path | fzf --select-1 --preview "exa -T -L 1 {}")
 if [ -n "$repo" ]; then
-    code ${repo}
+    code "$repo"
 fi
