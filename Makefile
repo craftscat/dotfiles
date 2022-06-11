@@ -9,17 +9,29 @@ DOTFILES   := $(filter-out $(EXCLUSIONS), $(TARGETS))
 list: # Show dotfiles
 	@$(foreach val, $(DOTFILES), /bin/ls -dF $(val);)
 
-.PHONY: install
-install: # Create symbolic links to home directory
+.PHONY: deploy
+ifeq ($(shell uname),Darwin)
+deploy: # Create symbolic links to home directory
+	@echo "==> Start to deploy dotfiles to home directory."
+	@$(foreach val, $(DOTFILES), ln -sfnv $(abspath $(val)) $(HOME)/$(val);)
+	@ln -sfnv $(DOTPATH)/iterm2/com.googlecode.iterm2.plist ~/Library/Preferences/com.googlecode.iterm2.plist
+	@echo "==> Grant execution rights to '~/bin/**'."
+	@chmod +x ~/bin/**
+	@echo "==> Done."
+else
+deploy:
 	@echo "==> Start to deploy dotfiles to home directory."
 	@$(foreach val, $(DOTFILES), ln -sfnv $(abspath $(val)) $(HOME)/$(val);)
 	@echo "==> Grant execution rights to '~/bin/**'."
 	@chmod +x ~/bin/**
 	@echo "==> Done."
+endif
 
-.PHONY: macos
-macos: # Install Homebrew & setup (macOS ONLY)
+ifeq ($(shell uname),Darwin)
+.PHONY: init
+init: # Install Homebrew & setup（MacOS ONLY）
 	@sh macos.sh
+endif
 
 .PHONY: help
 help: # Self-documented Makefile
