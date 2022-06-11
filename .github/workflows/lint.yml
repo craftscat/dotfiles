@@ -23,6 +23,7 @@ jobs:
           pattern: "*.sh"
 
       - name: Check the scripts in '~/bin'
+        with:
           github_token: ${{ secrets.github_token }}
           reporter: github-check
           path: "./bin/"
