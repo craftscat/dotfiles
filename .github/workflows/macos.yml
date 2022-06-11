@@ -1,0 +1,27 @@
+name: macos
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: install dotfiles
+        run: make install
+
+      - name: brew bundle
+        run: brew bundle
+        working-directory: ./brew
+
+      - name: load .zshrc
+        run: |
+          zsh ~/.zshrc 2> error.log; cat error.log
+          if [ -s error.log ]; then false; fi
