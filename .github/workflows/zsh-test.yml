@@ -1,0 +1,36 @@
+name: "zsh config test"
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install zsh on ubuntu-latest
+        if: runner.os == 'Linux'
+        run: |
+            sudo apt update -y
+            sudo apt install -y zsh
+
+      - name: Install zsh on macos-latest
+        if: runner.os == 'macOS'
+        run: |
+            brew update
+            brew install zsh
+
+      - name: Load .zshrc
+        working-direcotry: ''
+        run: |
+          zsh ${GITHUB_WORKSPACE}/.zshrc 2> error.log; cat error.log
+          if [ -s error.log ]; then false; f
