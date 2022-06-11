@@ -7,8 +7,7 @@ git clone https://github.com/craft-cat/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 
 make deploy
-
-make macos # If the OS is MacOS.
+make init
 
 cd ~/.dotfiles/brew
 brew bundle --global
