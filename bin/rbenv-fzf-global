@@ -5,3 +5,5 @@ version=$(rbenv versions | fzf --select-1 --preview="" | tr -d ' *')
 if [ -n "$version" ]; then
     rbenv global "$version"
 fi
+
+echo $version # test
