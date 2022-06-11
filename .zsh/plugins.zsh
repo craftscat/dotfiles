@@ -1,15 +1,15 @@
 # ----------------------------
 # Theme
 # ----------------------------
-zi ice depth=1; zinit light romkatv/powerlevel10k
+zinit ice depth=1; zinit light romkatv/powerlevel10k
 
 # ----------------------------
 # Completions
 # ----------------------------
-zi light zsh-users/zsh-completions
-zi light zsh-users/zsh-autosuggestions
+zinit ice wait'0' lucid; zinit light zsh-users/zsh-completions
+zinit ice wait'0' lucid; zinit light zsh-users/zsh-autosuggestions
 
 # ----------------------------
 # Syntax Highlighting
 # ----------------------------
-zi light z-shell/F-Sy-H
+zinit ice wait'0' lucid; zinit light z-shell/F-Sy-H
