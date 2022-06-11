@@ -17,6 +17,10 @@ install: # Create symbolic links to home directory
 	@chmod +x ~/bin/**
 	@echo "==> Done."
 
+.PHONY: macos
+macos: # Install Homebrew & setup (macOS ONLY)
+	@sh macos.sh
+
 .PHONY: help
 help: # Self-documented Makefile
 	@grep -E '^[a-zA-Z_-]+:.*?# .*$$' $(MAKEFILE_LIST) \

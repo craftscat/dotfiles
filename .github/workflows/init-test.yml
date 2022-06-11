@@ -23,5 +23,9 @@ jobs:
       - name: Install dotfiles
         run: make install
 
+      - name: Install Homebrew & setup (macOS ONLY)
+        if: runner.os == 'macOS'
+        run: make macos
+
       - name: Self-documented Makefile
         run: make help
