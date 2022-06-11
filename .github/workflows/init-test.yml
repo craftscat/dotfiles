@@ -20,8 +20,8 @@ jobs:
       - name: Show dotfiles
         run: make list
 
-      - name: Install dotfiles
-        run: make install
+      - name: Deploy dotfiles
+        run: make deploy
 
       - name: Install Homebrew & setup (macOS ONLY)
         if: runner.os == 'macOS'
