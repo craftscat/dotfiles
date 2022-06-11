@@ -29,7 +29,7 @@ endif
 
 ifeq ($(shell uname),Darwin)
 .PHONY: init
-init: # Install Homebrew & setup（MacOS ONLY）
+setup: # Install Homebrew & setup（MacOS ONLY）
 	@sh macos.sh
 endif
 
