@@ -42,10 +42,11 @@ export EDITOR="vim"
 # ----------------------------
 # zinit
 # ----------------------------
-zi wait lucid atload"zicompinit; zicdreplay" blockf for \
-    @'zsh-users/zsh-autosuggestions' \
-    @'zsh-users/zsh-completions' \
-    @'zdharma-continuum/fast-syntax-highlighting'
+zinit light-mode for \
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-bin-gem-node \
+    zdharma-continuum/zinit-annex-patch-dl \
+    zdharma-continuum/zinit-annex-rust
 
 # ----------------------------
 # powerlevel10k
