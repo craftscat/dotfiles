@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# --------------------------------
+# git branch browse & switch
+# --------------------------------
+branch=$(
+  git branch -a |
+    fzf --exit-0 --layout=reverse --info=hidden --select-1 --query="$1" --preview-window="right,65%" --prompt="CHECKOUT BRANCH > " --preview="echo {} | tr -d ' *' | xargs git lg --color=always" |
+    head -n 1 |
+    perl -pe "s/\s//g; s/\*//g; s/remotes\/origin\///g"
+)
+
+if [ -n "$branch" ]; then
+  git switch "$branch"
+fi

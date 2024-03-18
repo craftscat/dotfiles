@@ -1,0 +1,14 @@
+#!/bin/sh
+
+# --------------------------------------------------
+# git status & fzf diff & reset (unstaging)
+# --------------------------------------------------
+changes=$(unbuffer git status -s |
+    fzf -m --ansi --query="$1" --preview="echo {} | awk '{print \$2}' | xargs git diff --color" |
+    awk '{print $2}')
+if [ -n "$changes" ]; then
+    selected=$(echo "$changes" | tr '\n' ' ')
+    echo "$selected" | xargs git reset HEAD
+fi
+
+git status -s
