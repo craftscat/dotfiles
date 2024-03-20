@@ -51,6 +51,11 @@ export PATH="$(go env GOROOT)/bin:$PATH"
 export PATH="$(go env GOPATH)/bin:$PATH"
 
 # ----------------------------
+# gpg
+# ----------------------------
+export GPG_TTY=$TTY
+
+# ----------------------------
 # grep / ripgrep
 # ----------------------------
 if type "lg" > /dev/null 2>&1; then
