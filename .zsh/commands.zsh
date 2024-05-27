@@ -39,6 +39,13 @@ alias dce="docker compose exec"
 alias v="nvim"
 
 # ----------------------------
+# flutter
+# ----------------------------
+if type "flutter" > /dev/null 2>&1; then
+    export PATH="$PATH:$HOME/development/flutter/bin"
+fi
+
+# ----------------------------
 # git
 # ----------------------------
 alias g="git"
@@ -46,9 +53,11 @@ alias g="git"
 # ----------------------------
 # go
 # ----------------------------
-export GO111MODULE=on
-export PATH="$(go env GOROOT)/bin:$PATH"
-export PATH="$(go env GOPATH)/bin:$PATH"
+if type "go" > /dev/null 2>&1; then
+    export GO111MODULE=on
+    export PATH="$(go env GOROOT)/bin:$PATH"
+    export PATH="$(go env GOPATH)/bin:$PATH"
+fi
 
 # ----------------------------
 # gpg
