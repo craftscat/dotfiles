@@ -85,7 +85,7 @@
 	trustExitCode = true
 
 [ghq]
-    root = Projects
+    root = ~/Projects
 
 [pull]
     rebase = true
