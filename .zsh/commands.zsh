@@ -60,6 +60,11 @@ if type "go" > /dev/null 2>&1; then
 fi
 
 # ----------------------------
+# google-cloud-sdk
+# ----------------------------
+source "/opt/homebrew/share/google-cloud-sdk/path.zsh.inc"
+
+# ----------------------------
 # gpg
 # ----------------------------
 export GPG_TTY=$TTY
