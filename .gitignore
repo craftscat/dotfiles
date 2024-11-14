@@ -1,3 +1,4 @@
 .gitconfig.local
 .config/gcloud
+.config/karabiner/automatic_backups
 Brewfile.lock.json
